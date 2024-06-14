@@ -39,14 +39,14 @@ stages:
         name: publish_general_artifacts
         displayName: 上传制品
         dependArtifact: BUILD_ARTIFACT
-        artifactName: output
+        artifactName: dockerproxy-ui
         notify: []
         strategy:
           retry: '0'
       - step: publish@release_artifacts
         name: publish_release_artifacts
         displayName: 发布
-        dependArtifact: output
+        dependArtifact: dockerproxy-ui
         version: 1.0.0.0
         autoIncrement: true
         notify: []
