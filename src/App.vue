@@ -1,21 +1,12 @@
 <template>
   <div id="app">
-    <DockerProxy />
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import DockerProxy from './components/DockerProxy.vue';
-
-export default {
-  name: 'App',
-  components: {
-    DockerProxy
-  }
-};
+export default {}
 </script>
 
-/* App.vue */
-<style lang="less" scoped>
-
-</style>
+<style lang="less" scoped></style>
