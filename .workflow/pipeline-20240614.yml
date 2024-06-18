@@ -5,7 +5,7 @@ triggers:
   trigger: auto
   push:
     branches:
-      prefix:
+      precise:
         - main
 stages:
   - name: stage-a9e9901f
