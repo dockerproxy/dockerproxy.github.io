@@ -7,7 +7,7 @@
         <!-- <p>本站提供企业付费私有镜像加速服务，有兴趣请留言。</p> -->
         <el-button type="primary" @click="navigateTo('/doc')">使用文档</el-button>
         <div class="gpt">
-          <p style="font-size: 20px;">免魔法！非镜像！官网原版ChatGPT4账号免费使用，含最新4o模型</p>
+          <p style="font-size: 20px;" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/kf8581aru299n8xq')">免魔法！非镜像！官网原版ChatGPT4账号免费使用，含最新4o模型</p>
           <el-button type="primary" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/kf8581aru299n8xq')">点击使用</el-button>
         </div>
       </div>

@@ -10,7 +10,9 @@
           class="el-menu"
           background-color="#fff"
           text-color="#545c64"
-        >
+        >         
+        <el-menu-item index="11" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/kf8581aru299n8xq')">免魔法Chatgpt4</el-menu-item>
+
           <el-menu-item index="1" @click="navigateTo('/index')">首页</el-menu-item>
           <el-menu-item
             index="2"
@@ -23,7 +25,6 @@
           <!-- <el-menu-item index="8">更多</el-menu-item> -->
           <el-menu-item index="9" @click="navigateTo('/donate')">捐赠</el-menu-item>
           <el-menu-item index="10" @click="navigateToExternal('https://github.com/kubesre/docker-registry-mirrors')">GitHub</el-menu-item>
-          <el-menu-item index="11" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/kf8581aru299n8xq')">免魔法Chatgpt4</el-menu-item>
 
         </el-menu>
       </div>
@@ -45,6 +46,8 @@
         text-color="#545c64"
         @select="closeDrawer"
       >
+      <el-menu-item index="11" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/kf8581aru299n8xq')">免魔法Chatgpt4</el-menu-item>
+
         <el-menu-item index="1" @click="navigateTo('/index')">首页</el-menu-item>
         <el-menu-item
             index="2"
@@ -57,7 +60,6 @@
         <!-- <el-menu-item index="8">更多</el-menu-item> -->
         <el-menu-item index="9" @click="navigateTo('/donate')">捐赠</el-menu-item>
         <el-menu-item index="10" @click="navigateToExternal('https://github.com/kubesre/docker-registry-mirrors')">GitHub</el-menu-item>
-        <el-menu-item index="11" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/kf8581aru299n8xq')">免魔法Chatgpt4</el-menu-item>
 
       </el-menu>
     </el-drawer>
