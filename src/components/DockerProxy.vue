@@ -8,7 +8,7 @@
         <el-button type="primary" @click="navigateTo('/doc')">使用文档</el-button>
         <div class="gpt">
           <p style="font-size: 20px;">免魔法！非镜像！官网原版ChatGPT4账号免费使用，含最新4o模型</p>
-          <el-button type="primary" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/bwgig3952zr7gi2w?singleDoc#%20%E3%80%8A%E6%96%B0%E6%A8%A1%E5%9E%8BChatGPT4o%EF%BC%8C%E5%A4%AA%E7%89%9B%E9%80%BC%E4%BA%86%EF%BC%81%E3%80%8B')">点击使用</el-button>
+          <el-button type="primary" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/kf8581aru299n8xq')">点击使用</el-button>
         </div>
       </div>
 
