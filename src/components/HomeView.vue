@@ -23,6 +23,8 @@
           <!-- <el-menu-item index="8">更多</el-menu-item> -->
           <el-menu-item index="9" @click="navigateTo('/donate')">捐赠</el-menu-item>
           <el-menu-item index="10" @click="navigateToExternal('https://github.com/kubesre/docker-registry-mirrors')">GitHub</el-menu-item>
+          <el-menu-item index="11" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/bwgig3952zr7gi2w?singleDoc#%20%E3%80%8A%E6%96%B0%E6%A8%A1%E5%9E%8BChatGPT4o%EF%BC%8C%E5%A4%AA%E7%89%9B%E9%80%BC%E4%BA%86%EF%BC%81%E3%80%8B')">免魔法Chatgpt4</el-menu-item>
+
         </el-menu>
       </div>
       <div class="mobile-menu">
@@ -45,9 +47,9 @@
       >
         <el-menu-item index="1" @click="navigateTo('/index')">首页</el-menu-item>
         <el-menu-item
-          index="2"
-          @click="navigateToExternal('https://github.com/kubesre/docker-registry-mirrors')"
-        >使用文档</el-menu-item>
+            index="2"
+            @click="navigateTo('/doc')"
+          >使用文档</el-menu-item>
         <el-menu-item
           index="3"
           @click="navigateToExternal('https://www.kubesre.com/')"
@@ -55,6 +57,7 @@
         <!-- <el-menu-item index="8">更多</el-menu-item> -->
         <el-menu-item index="9" @click="navigateTo('/donate')">捐赠</el-menu-item>
         <el-menu-item index="10" @click="navigateToExternal('https://github.com/kubesre/docker-registry-mirrors')">GitHub</el-menu-item>
+        <el-menu-item index="11" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/bwgig3952zr7gi2w?singleDoc#%20%E3%80%8A%E6%96%B0%E6%A8%A1%E5%9E%8BChatGPT4o%EF%BC%8C%E5%A4%AA%E7%89%9B%E9%80%BC%E4%BA%86%EF%BC%81%E3%80%8B')">免魔法Chatgpt4</el-menu-item>
 
       </el-menu>
     </el-drawer>

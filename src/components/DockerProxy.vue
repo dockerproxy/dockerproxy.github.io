@@ -6,7 +6,12 @@
         <p>多平台容器镜像代理服务,支持 Docker Hub, GitHub, Google, k8s, Quay, Microsoft 等镜像仓库.</p>
         <!-- <p>本站提供企业付费私有镜像加速服务，有兴趣请留言。</p> -->
         <el-button type="primary" @click="navigateTo('/doc')">使用文档</el-button>
+        <div class="gpt">
+          <p style="font-size: 20px;">免魔法！非镜像！官网原版ChatGPT4账号免费使用，含最新4o模型</p>
+          <el-button type="primary" @click="navigateToExternal('https://www.yuque.com/kubesre/cpduyq/bwgig3952zr7gi2w?singleDoc#%20%E3%80%8A%E6%96%B0%E6%A8%A1%E5%9E%8BChatGPT4o%EF%BC%8C%E5%A4%AA%E7%89%9B%E9%80%BC%E4%BA%86%EF%BC%81%E3%80%8B')">点击使用</el-button>
+        </div>
       </div>
+
 
       <div class="commands">
         <h2>快捷命令</h2>
@@ -82,6 +87,10 @@ export default {
         this.$router.push(path);
         this.closeDrawer(); // 关闭抽屉
       }
+    },
+    navigateToExternal(url) {
+      window.open(url, '_blank');
+      this.closeDrawer(); // 关闭抽屉
     },
     navigateTogw() {
       window.open('https://www.kubesre.com/', '_blank');
