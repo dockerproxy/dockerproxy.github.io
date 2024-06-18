@@ -108,27 +108,27 @@ export default {
       this.commandsVisible = true;
     },
     getProxyRepo(sourceRepo) {
-      const proxyDomain = process.env.VUE_APP_PROXY_DOMAIN || 'kubesre.xyz'; 
-      const repoMapping = {
-        "cr.l5d.io": `l5d.${proxyDomain}`,
-        "docker.elastic.co": `elastic.${proxyDomain}`,
-        "docker.io": `dhub.${proxyDomain}`,
-        "gcr.io": `gcr.${proxyDomain}`,
-        "ghcr.io": `ghcr.${proxyDomain}`,
-        "k8s.gcr.io": `k8s-gcr.${proxyDomain}`,
-        "registry.k8s.io": `k8s.${proxyDomain}`,
-        "mcr.microsoft.com": `mcr.${proxyDomain}`,
-        "nvcr.io": `nvcr.${proxyDomain}`,
-        "quay.io": `quay.${proxyDomain}`,
-        "registry.jujucharms.com": `jujucharms.${proxyDomain}`
-      };
-      const defaultRepo = "docker.io";
-      const parts = sourceRepo.split('/');
-      const repoName = parts.length > 1 ? parts[0] : defaultRepo;
-      const imageName = parts.length > 1 ? parts.slice(1).join('/') : parts[0];
-      const targetRepo = repoMapping[repoName] || repoMapping[defaultRepo];
-      return `${targetRepo}/${imageName}`;
-    },
+  const proxyDomain = process.env.VUE_APP_PROXY_DOMAIN || 'kubesre.xyz'; 
+  const repoMapping = {
+    "cr.l5d.io": `l5d.${proxyDomain}`,
+    "docker.elastic.co": `elastic.${proxyDomain}`,
+    "docker.io": `dhub.${proxyDomain}`,
+    "gcr.io": `gcr.${proxyDomain}`,
+    "ghcr.io": `ghcr.${proxyDomain}`,
+    "k8s.gcr.io": `k8s-gcr.${proxyDomain}`,
+    "registry.k8s.io": `k8s.${proxyDomain}`,
+    "mcr.microsoft.com": `mcr.${proxyDomain}`,
+    "nvcr.io": `nvcr.${proxyDomain}`,
+    "quay.io": `quay.${proxyDomain}`,
+    "registry.jujucharms.com": `jujucharms.${proxyDomain}`
+  };
+  const defaultRepo = "docker.io";
+  const parts = sourceRepo.split('/');
+  const repoName = parts.length > 1 ? parts[0] : defaultRepo;
+  const imageName = parts.length > 1 ? parts.slice(1).join('/') : parts[0];
+  const targetRepo = repoMapping[repoName] || repoMapping[defaultRepo];
+  return `${targetRepo}/${repoName === defaultRepo ? '' : repoName + '/'}${imageName}`;
+},
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         this.$message({
