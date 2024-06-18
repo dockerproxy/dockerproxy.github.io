@@ -10,7 +10,15 @@
 
       <div class="commands">
         <h2>快捷命令</h2>
+
         <el-card class="box-card">
+          
+          <el-alert
+            title="重要提醒"
+            type="warning"
+            >
+            <p style="font-size: 20px;">docker.{{proxyDomain}} 拉取 dockerhub 仓库的域名被墙，更换为 dhub.{{proxyDomain}}。</p>
+          </el-alert>
           <el-form @submit.prevent="handleSubmit" label-position="top">
             <el-form-item label="第一步：输入原始镜像地址" class="form-item-full-width">
               <el-input v-model="sourceImage" placeholder="stilleshan/frpc:latest"></el-input>
@@ -64,7 +72,8 @@ export default {
       tagCommand: '',
       removeCommand: '',
       sedCommand: '',
-      commandsVisible: false
+      commandsVisible: false,
+      proxyDomain: process.env.VUE_APP_PROXY_DOMAIN || 'kubesre.xyz', 
     };
   },
   methods: {
@@ -94,7 +103,7 @@ export default {
       const repoMapping = {
         "cr.l5d.io": `l5d.${proxyDomain}`,
         "docker.elastic.co": `elastic.${proxyDomain}`,
-        "docker.io": `docker.${proxyDomain}`,
+        "docker.io": `dhub.${proxyDomain}`,
         "gcr.io": `gcr.${proxyDomain}`,
         "ghcr.io": `ghcr.${proxyDomain}`,
         "k8s.gcr.io": `k8s-gcr.${proxyDomain}`,
