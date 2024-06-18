@@ -12,16 +12,11 @@
         </div>
       </div>
 
-
       <div class="commands">
         <h2>快捷命令</h2>
 
         <el-card class="box-card">
-          
-          <el-alert
-            title="重要提醒"
-            type="warning"
-            >
+          <el-alert title="重要提醒" type="warning">
             <p style="font-size: 20px;">docker.{{proxyDomain}} 拉取 dockerhub 仓库的域名被墙，更换为 dhub.{{proxyDomain}}。</p>
           </el-alert>
           <el-form @submit.prevent="handleSubmit" label-position="top">
@@ -32,35 +27,45 @@
               <el-button type="primary" @click="generateCommands">获取命令</el-button>
             </el-form-item>
           </el-form>
-          <div v-if="commandsVisible">
-            <el-form label-position="top">
-              <h3>适用于将镜像拉取到本地的命令</h3>
-              <el-form-item label="代理拉取镜像">
-                <div class="command-wrapper">
-                  <el-input v-model="proxyPullCommand" readonly></el-input>
-                  <el-button type="primary" @click="copyToClipboard(proxyPullCommand)">复制</el-button>
-                </div>
-              </el-form-item>
-              <el-form-item label="重命名镜像">
-                <div class="command-wrapper">
-                  <el-input v-model="tagCommand" readonly></el-input>
-                  <el-button type="primary" @click="copyToClipboard(tagCommand)">复制</el-button>
-                </div>
-              </el-form-item>
-              <el-form-item label="删除代理镜像">
-                <div class="command-wrapper">
-                  <el-input v-model="removeCommand" readonly></el-input>
-                  <el-button type="primary" @click="copyToClipboard(removeCommand)">复制</el-button>
-                </div>
-              </el-form-item>
-              <h3>适用于替换文件中镜像的命令</h3>
-              <el-form-item label="替换文件中的镜像">
-                <div class="command-wrapper">
-                  <el-input v-model="sedCommand" readonly></el-input>
-                  <el-button type="primary" @click="copyToClipboard(sedCommand)">复制</el-button>
-                </div>
-              </el-form-item>
-            </el-form>
+          <div v-if="commandsVisible" class="command-output">
+            <div class="command-section">
+              <div class="command-header">
+                <i class="el-icon-d-arrow-right"></i>
+                <span>Docker 拉取命令</span>
+              </div>
+              <div class="command-body">
+                <el-input v-model="proxyPullCommand" readonly></el-input>
+                <el-button type="primary" @click="copyToClipboard(proxyPullCommand)">复制</el-button>
+              </div>
+              <div class="command-body">
+                <el-input v-model="tagCommand" readonly></el-input>
+                <el-button type="primary" @click="copyToClipboard(tagCommand)">复制</el-button>
+              </div>
+            </div>
+            <div class="command-section">
+              <div class="command-header">
+                <i class="el-icon-d-arrow-right"></i>
+                <span>Containerd 拉取命令</span>
+              </div>
+              <div class="command-body">
+                <el-input v-model="ctrPullCommand" readonly></el-input>
+                <el-button type="primary" @click="copyToClipboard(ctrPullCommand)">复制</el-button>
+              </div>
+              <div class="command-body">
+                <el-input v-model="ctrTagCommand" readonly></el-input>
+                <el-button type="primary" @click="copyToClipboard(ctrTagCommand)">复制</el-button>
+              </div>
+            </div>
+            <div class="command-section">
+              <div class="command-header">
+                <i class="el-icon-document"></i>
+                <span>Shell 快速替换命令</span>
+              </div>
+              <div class="command-body">
+                <el-input v-model="sedCommand" readonly></el-input>
+                <el-button type="primary" @click="copyToClipboard(sedCommand)">复制</el-button>
+              </div>
+            </div>
           </div>
         </el-card>
       </div>
@@ -75,6 +80,8 @@ export default {
       sourceImage: 'stilleshan/frpc:latest',
       proxyPullCommand: '',
       tagCommand: '',
+      ctrPullCommand: '',
+      ctrTagCommand: '',
       removeCommand: '',
       sedCommand: '',
       commandsVisible: false,
@@ -103,7 +110,8 @@ export default {
       const proxyImage = this.getProxyRepo(sourceImage);
       this.proxyPullCommand = `docker pull ${proxyImage}`;
       this.tagCommand = `docker tag ${proxyImage} ${sourceImage}`;
-      this.removeCommand = `docker rmi ${proxyImage}`;
+      this.ctrPullCommand = `ctr images pull ${proxyImage}`;
+      this.ctrTagCommand = `ctr images tag ${proxyImage} ${sourceImage}`;
       this.sedCommand = `sed -i "s#${sourceImage}#${proxyImage}#g" 你的文件名`;
       this.commandsVisible = true;
     },
@@ -127,7 +135,7 @@ export default {
   const repoName = parts.length > 1 ? parts[0] : defaultRepo;
   const imageName = parts.length > 1 ? parts.slice(1).join('/') : parts[0];
   const targetRepo = repoMapping[repoName] || repoMapping[defaultRepo];
-  return `${targetRepo}/${repoName === defaultRepo ? '' : repoName + '/'}${imageName}`;
+  return `${targetRepo}/${imageName}`;
 },
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
@@ -202,6 +210,35 @@ html, body {
   flex: 1;
   margin-right: 10px; /* 调整间距 */
   box-sizing: border-box; /* 包含内边距和边框在宽度内 */
+}
+
+.command-section {
+  margin-bottom: 20px;
+}
+
+.command-header {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.command-header i {
+  margin-right: 5px;
+}
+
+.command-body {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.command-body .el-input {
+  flex: 1;
+}
+
+.command-body .el-button {
+  margin-left: 10px;
 }
 
 /* 响应式设计 */
