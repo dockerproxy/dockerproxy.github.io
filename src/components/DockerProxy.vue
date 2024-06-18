@@ -114,8 +114,7 @@ export default {
       this.ctrTagCommand = `ctr images tag ${proxyImage} ${sourceImage}`;
       this.sedCommand = `sed -i "s#${sourceImage}#${proxyImage}#g" 你的文件名`;
       this.commandsVisible = true;
-    },
-    getProxyRepo(sourceRepo) {
+    },getProxyRepo(sourceRepo) {
   const proxyDomain = process.env.VUE_APP_PROXY_DOMAIN || 'kubesre.xyz'; 
   const repoMapping = {
     "cr.l5d.io": `l5d.${proxyDomain}`,
@@ -132,11 +131,23 @@ export default {
   };
   const defaultRepo = "docker.io";
   const parts = sourceRepo.split('/');
-  const repoName = parts.length > 1 ? parts[0] : defaultRepo;
-  const imageName = parts.length > 1 ? parts.slice(1).join('/') : parts[0];
+  
+  let repoName, imageName;
+
+  if (parts.length > 1 && parts[0].includes('.')) {
+    repoName = parts[0];
+    imageName = parts.slice(1).join('/');
+  } else {
+    repoName = defaultRepo;
+    imageName = parts.join('/');
+  }
+
   const targetRepo = repoMapping[repoName] || repoMapping[defaultRepo];
+  
+  // If the repoName is the default repo, don't include it in the final URL
   return `${targetRepo}/${imageName}`;
-},
+}
+,
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         this.$message({
