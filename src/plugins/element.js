@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Form, FormItem, Input, Button, Message, Container, Dropdown, DropdownItem, DropdownMenu, Header, Aside, Main, Descriptions, Menu, MenuItem, Submenu, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Dialog, Switch, Pagination, DescriptionsItem, MessageBox, Popover, Drawer } from 'element-ui'
+import { Form, FormItem, Link, Input, Button, Message, Container, Dropdown, DropdownItem, DropdownMenu, Header, Aside, Main, Descriptions, Menu, MenuItem, Submenu, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Dialog, Switch, Pagination, DescriptionsItem, MessageBox, Popover, Drawer } from 'element-ui'
 
 import 'element-ui/lib/theme-chalk/index.css' // UI组件样式
 Vue.use(Form)
@@ -7,6 +7,7 @@ Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Button)
 Vue.use(Container)
+Vue.use(Link)
 Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
